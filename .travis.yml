@@ -19,5 +19,5 @@ notifications:
     urls:
       - https://rmotr.com/api/v1/webhooks/travis/project-resolved
     on_success: always
-    on_failure: never
+    on_failure: always
     on_start: never
