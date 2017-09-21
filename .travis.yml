@@ -17,7 +17,7 @@ script:
 notifications:
   webhooks:
     urls:
-      - https://rmotr.com/api/v1/webhooks/travis/project-resolved
+      - https://rmotr.com/api/v1/webhooks/travis/build-project
     on_success: always
     on_failure: always
     on_start: never
