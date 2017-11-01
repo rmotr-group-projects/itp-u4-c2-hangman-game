@@ -1,8 +1,10 @@
 import pytest
-from hangman.game import (
+#Update file if testing to either "from hangman.game" or "from hangman_LS.game"
+from hangman.game_LS import (
     start_new_game, guess_letter, _get_random_word, _mask_word, _uncover_word)
 from hangman.exceptions import *
 
+#Tests for _uncover_word function
 
 def test_uncover_word_with_empty_word():
     """Words are empty"""
@@ -71,6 +73,7 @@ def test_uncover_word_is_case_insensitive_different_case():
     word = _uncover_word('Python', '******', 'p')
     assert word == 'p*****'
 
+#Tests for _get_random_word function
 
 def test_get_random_word_with_one_word():
     list_of_words = ['rmotr']
@@ -88,6 +91,7 @@ def test_get_random_word_with_empty_list():
     with pytest.raises(InvalidListOfWordsException):
         word_to_guess = _get_random_word([])
 
+#Tests for _mask_word function
 
 def test_mask_word_with_valid_word():
     masked = _mask_word('Python')
@@ -98,6 +102,7 @@ def test_mask_word_with_empty_string():
     with pytest.raises(InvalidWordException):
         masked = _mask_word('')
 
+#Tests for_start_new_game function
 
 def test_start_new_game_initial_state():
     # This test verifies that you haven't changed start_new_game
@@ -109,6 +114,7 @@ def test_start_new_game_initial_state():
         'remaining_misses': 3,
     }
 
+#Tests for _gues_letter function
 
 def test_game_with_one_correct_guess():
     game = start_new_game(['Python'])
