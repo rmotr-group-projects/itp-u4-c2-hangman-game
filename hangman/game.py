@@ -1,3 +1,4 @@
+import random
 from .exceptions import *
 import re
 import random
@@ -25,17 +26,10 @@ def _mask_word(word):
 
 
 def _uncover_word(answer_word, masked_word, character):
-    # word_to_mask = answer_word
-    # word_mapping = {}
     guesses = 0
     answer_word = answer_word.lower()
     character = character.lower()
 
-    # for index, letter in enumerate(word_to_mask):
-    #     word_mapping.setdefault(letter, index)
-
-    # if character in word_mapping:
-    #     { 'P': 0, 'y': 1, 't': 2, 'h': 3, 'o': 4, 'n': 5 }
     unmasked_word = ''
 
     if not answer_word:
