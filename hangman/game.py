@@ -13,12 +13,13 @@ def _get_random_word(list_of_words):
     except:
         raise InvalidListOfWordsException
 
+
 def _mask_word(word):
     masked_word = ''
 
     if not word:
         raise InvalidWordException
-    else:    
+    else:
         for i in range(len(word)):
             masked_word += '*'
 
@@ -64,21 +65,22 @@ def guess_letter(game, letter):
     answer_word = game['answer_word'].lower()
     masked_word = game['masked_word']
     character = letter.lower()
-    
-    
+
     if character in answer_word:
-        game['masked_word'] = _uncover_word(answer_word, masked_word, character)
+        game['masked_word'] = _uncover_word(
+            answer_word, masked_word, character)
     else:
         game['remaining_misses'] -= 1
-    
+
     if game['remaining_misses'] == 0:
         raise GameLostException
     elif game['masked_word'] == answer_word:
         raise GameWonException
-        
+
     game['previous_guesses'].append(character)
-    
+
     return masked_word
+
 
 def start_new_game(list_of_words=None, number_of_guesses=5):
     if list_of_words is None:
