@@ -60,24 +60,36 @@ def _uncover_word(answer_word, masked_word, character):
 
     return unmasked_word
 
+def game_already_won(game):
+    return game['masked_word'].lower() == game['answer_word'].lower()
+
+def game_already_lost(game):
+    return game['remaining_misses'] <= 0
+
+def is_game_finished(game):
+    return game_already_won(game) or game_already_lost(game)
 
 def guess_letter(game, letter):
     answer_word = game['answer_word'].lower()
     masked_word = game['masked_word']
     character = letter.lower()
 
-    if character in answer_word:
+    if is_game_finished(game):
+        raise GameFinishedException
+
+    if character in game['answer_word'].lower():
         game['masked_word'] = _uncover_word(
             answer_word, masked_word, character)
     else:
         game['remaining_misses'] -= 1
 
-    if game['remaining_misses'] == 0:
-        raise GameLostException
-    elif game['masked_word'] == answer_word:
+    game['previous_guesses'].append(character)
+
+    if game_already_won(game):
         raise GameWonException
 
-    game['previous_guesses'].append(character)
+    if game_already_lost(game):
+        raise GameLostException
 
     return masked_word
 
