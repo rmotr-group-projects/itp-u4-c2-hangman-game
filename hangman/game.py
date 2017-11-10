@@ -1,86 +1,97 @@
 import random
 from .exceptions import *
+import re
+import random
 
 # Complete with your own, just for fun :)
-LIST_OF_WORDS = []
+LIST_OF_WORDS = ['Yellow', 'Blue', 'Green']
 
 
 def _get_random_word(list_of_words):
-    if not list_of_words:
-        raise InvalidListOfWordsException()
-    return random.choice(list_of_words)
+    try:
+        return random.choice(list_of_words)
+    except:
+        raise InvalidListOfWordsException
 
 
 def _mask_word(word):
+    masked_word = ''
+
     if not word:
-        raise InvalidWordException()
-    return '*' * len(word)
+        raise InvalidWordException
+    else:
+        for i in range(len(word)):
+            masked_word += '*'
+
+    return masked_word
 
 
 def _uncover_word(answer_word, masked_word, character):
-    if not answer_word or not masked_word:
-        raise InvalidWordException()
+    guesses = 0
+    answer_word = answer_word.lower()
+    character = character.lower()
+
+    unmasked_word = ''
+
+    if not answer_word:
+        raise InvalidWordException
 
     if len(character) > 1:
-        raise InvalidGuessedLetterException()
+        raise InvalidGuessedLetterException
 
-    if len(answer_word) != len(masked_word):
-        raise InvalidWordException()
+    if len(masked_word) != len(answer_word):
+        raise InvalidWordException
 
-    answer = answer_word.lower()
-    if character.lower() not in answer:
-        return masked_word
-
-    new_word = ''
-
-    for answer_char, masked_char in zip(answer, masked_word):
-        if character.lower() == answer_char:
-            new_word += answer_char
+    if character not in answer_word:
+        if guesses == 0:
+            guesses += 1
+            return masked_word
         else:
-            new_word += masked_char
+            return unmasked_word
 
-    return new_word
+    elif character in answer_word:
+        indices = [m.start() for m in re.finditer(character, answer_word)]
 
+        for index, letter in enumerate(masked_word):
+            if index in indices:
+                unmasked_word += character
+            else:
+                unmasked_word += letter
 
-def _is_game_won(game):
-    return game['answer_word'].lower() == game['masked_word'].lower()
+    return unmasked_word
 
+def game_already_won(game):
+    return game['masked_word'].lower() == game['answer_word'].lower()
 
-def _is_game_lost(game):
+def game_already_lost(game):
     return game['remaining_misses'] <= 0
 
-
-def _is_game_finished(game):
-    return _is_game_lost(game) or _is_game_won(game)
-
+def is_game_finished(game):
+    return game_already_won(game) or game_already_lost(game)
 
 def guess_letter(game, letter):
-    letter = letter.lower()
-    if letter in game['previous_guesses']:
-        raise InvalidGuessedLetterException()
+    answer_word = game['answer_word'].lower()
+    masked_word = game['masked_word']
+    character = letter.lower()
 
-    if _is_game_finished(game):  # Already Won
-        raise GameFinishedException()
+    if is_game_finished(game):
+        raise GameFinishedException
 
-    previous_masked = game['masked_word']
-    new_masked = _uncover_word(game['answer_word'], previous_masked, letter)
-
-    if previous_masked == new_masked:
-        # This is a miss!
-        game['remaining_misses'] -= 1
+    if character in game['answer_word'].lower():
+        game['masked_word'] = _uncover_word(
+            answer_word, masked_word, character)
     else:
-        # This is a correct guess!
-        game['masked_word'] = new_masked
+        game['remaining_misses'] -= 1
 
-    game['previous_guesses'].append(letter)
+    game['previous_guesses'].append(character)
 
-    if _is_game_won(game):
-        raise GameWonException()
+    if game_already_won(game):
+        raise GameWonException
 
-    if _is_game_lost(game):
-        raise GameLostException()
+    if game_already_lost(game):
+        raise GameLostException
 
-    # return new_masked
+    return masked_word
 
 
 def start_new_game(list_of_words=None, number_of_guesses=5):
