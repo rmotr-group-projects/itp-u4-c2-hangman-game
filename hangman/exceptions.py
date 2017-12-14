@@ -1,22 +1,22 @@
 class InvalidListOfWordsException(Exception):
-    pass
+    print("\t Your list is not valid. Please try again")
 
 
 class InvalidWordException(Exception):
-    pass
+    print("\t Your word is not valid. Please try again")
 
 
 class GameWonException(Exception):
-    pass
+    print("\t YES! You win!")
 
 
 class GameLostException(Exception):
-    pass
+    print("\t :( OH NO! You Lose!")
 
 
 class GameFinishedException(Exception):
-    pass
+    print("\t game over")
 
 
 class InvalidGuessedLetterException(Exception):
-    pass
+    print("\t That's not a valid letter guess!")
