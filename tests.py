@@ -4,7 +4,7 @@ from hangman.game import (
 from hangman.exceptions import *
 
 
-def test_uncover_word_with_empty_word():
+def test_uncover_word_with_empty_word(): # OK
     """Words are empty"""
     with pytest.raises(InvalidWordException):
         _uncover_word('', '', 'x')
