@@ -31,12 +31,12 @@ def test_uncover_word_with_miss_character():
     word = _uncover_word('Python', '******', 'z')
     assert word == '******'
 
-
+# Not passing
 def test_uncover_word_with_repeated_elements():
     word = _uncover_word('rmotr', '*****', 'r')
     assert word == 'r***r'
 
-
+# Not passing
 def test_uncover_word_with_all_equal_characters():
     word = _uncover_word('aaa', '***', 'a')
     assert word == 'aaa'
