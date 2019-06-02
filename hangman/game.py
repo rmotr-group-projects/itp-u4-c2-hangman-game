@@ -1,11 +1,14 @@
 from .exceptions import *
+import random
 
 # Complete with your own, just for fun :)
 LIST_OF_WORDS = []
 
 
 def _get_random_word(list_of_words):
-    pass
+    if list_of_words == []:
+      raise InvalidWordException("The list is empty")
+    return random.choice(list_of_words) # returned a random word form list
 
 
 def _mask_word(word):
@@ -13,7 +16,8 @@ def _mask_word(word):
 
 
 def _uncover_word(answer_word, masked_word, character):
-    pass
+    if not answer_word or not masked_word:
+      raise InvalidWordException
 
 
 def guess_letter(game, letter):
