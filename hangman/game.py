@@ -9,7 +9,7 @@ def _get_random_word(list_of_words):
 
 
 def _mask_word(word):
-    pass
+     return "*" * len(word)
 
 
 def _uncover_word(answer_word, masked_word, character):
