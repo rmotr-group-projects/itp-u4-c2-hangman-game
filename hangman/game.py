@@ -15,7 +15,8 @@ def _mask_word(word):
 
 
 def _uncover_word(answer_word, masked_word, character):
-    pass
+    if not answer_word or not masked_word:
+        raise InvalidWordException
 
 
 def guess_letter(game, letter):
