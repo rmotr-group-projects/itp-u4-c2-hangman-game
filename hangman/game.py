@@ -24,6 +24,8 @@ def _uncover_word(answer_word, masked_word, character):
         raise InvalidWordException
     if len(character) > 1:
         raise InvalidGuessedLetterException
+    if character not in answer_word:
+        return masked_word
 
 
 def guess_letter(game, letter):
