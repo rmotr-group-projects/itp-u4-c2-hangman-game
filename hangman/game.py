@@ -27,6 +27,13 @@ def _uncover_word(answer_word, masked_word, character):
     if character not in answer_word:
         return masked_word
 
+    tmp_char_list = list(masked_word)
+    for index, char in enumerate(answer_word):
+        if char == character:
+            tmp_char_list[index] = character
+    return "".join(tmp_char_list)
+        
+
 
 def guess_letter(game, letter):
     pass
