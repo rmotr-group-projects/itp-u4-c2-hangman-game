@@ -20,6 +20,8 @@ def _mask_word(word):
 def _uncover_word(answer_word, masked_word, character):
     if not answer_word or not masked_word:
         raise InvalidWordException
+    if len(answer_word) != len(masked_word):
+        raise InvalidWordException
     if len(character) > 1:
         raise InvalidGuessedLetterException
 
