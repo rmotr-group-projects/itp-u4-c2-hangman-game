@@ -10,7 +10,9 @@ VALID_CHARS = string.ascii_letters
 
 
 def _get_random_word(list_of_words):
-    return random.choice(list_of_words)
+    if list_of_words:
+        return random.choice(list_of_words)
+    raise InvalidListOfWordsException
 
 
 def _mask_word(word):
