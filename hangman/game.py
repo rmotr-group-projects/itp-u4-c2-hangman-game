@@ -24,15 +24,16 @@ def _uncover_word(answer_word, masked_word, character):
         raise InvalidWordException
     if len(character) > 1:
         raise InvalidGuessedLetterException
-    if character not in answer_word:
+    if character.lower() not in answer_word.lower():
         return masked_word
 
-    tmp_char_list = list(masked_word)
+    masked_word_list = list(masked_word)
+
     for index, char in enumerate(answer_word):
-        if char == character:
-            tmp_char_list[index] = character
-    return "".join(tmp_char_list)
-        
+        if char.lower() == character.lower():
+            masked_word_list[index] = character.lower()
+
+    return "".join(masked_word_list)
 
 
 def guess_letter(game, letter):
