@@ -16,7 +16,9 @@ def _get_random_word(list_of_words):
 
 
 def _mask_word(word):
-    return "*" * len(word)
+    if word:
+        return "*" * len(word)
+    raise InvalidWordException
 
 
 def _uncover_word(answer_word, masked_word, character):
