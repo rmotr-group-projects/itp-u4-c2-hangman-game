@@ -1,9 +1,3 @@
-<p align='center'>
-  <b>Watch the intro and explanation for this project!</b>
-  <a href='https://www.youtube.com/watch?v=5dxZgZjwTaM'><img src='https://user-images.githubusercontent.com/872296/32171715-e02186ce-bd57-11e7-9742-56069329f5a6.png' width=600 /></a><br><sub><a href='https://www.youtube.com/watch?v=5dxZgZjwTaM'>(YouTube Link)</a></sub>
-  <hr>
-</p>
-
 # Hangman Game
 
 Today we are going to re-create the game 'Hangman' in Python!
