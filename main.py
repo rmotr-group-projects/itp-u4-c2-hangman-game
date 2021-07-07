@@ -49,6 +49,7 @@ def main():
                 continue
 
             new_masked_word = game['masked_word']
+            print(game['answer_word'])
 
             if new_masked_word != previous_masked_word:
                 print("\tCongratulations! That's correct.")
