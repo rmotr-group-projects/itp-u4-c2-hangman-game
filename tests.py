@@ -365,3 +365,8 @@ def test_game_already_lost_raises_game_finished():
 
     with pytest.raises(GameFinishedException):
         guess_letter(game, 'n')  # Doesn't matter
+
+        
+
+
+        

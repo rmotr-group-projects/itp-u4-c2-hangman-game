@@ -1,0 +1,4 @@
+{
+  "tests.py::test_guess": true,
+  "tests.py::test_guess_lol": true
+}
