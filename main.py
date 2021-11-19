@@ -5,8 +5,8 @@ except NameError:
     # Python 3
     _input = input
 
-from hangman.game import start_new_game, guess_letter
-from hangman.exceptions import *
+from game import start_new_game, guess_letter
+from exceptions import *
 
 LIST_OF_WORDS = ['rmotr', 'Python', 'coding']
 
