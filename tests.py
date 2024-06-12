@@ -211,9 +211,9 @@ def test_game_wins_first_try():
 
     with pytest.raises(GameWonException):
         guess_letter(game, 'a')
-        assert game['masked_word'] == 'aaa'
-        assert game['remaining_misses'] == 5
-        assert game['previous_guesses'] == ['a']
+    assert game['masked_word'] == 'aaa'
+    assert game['remaining_misses'] == 5
+    assert game['previous_guesses'] == ['a']
 
 
 def test_game_loses_first_try():
@@ -221,9 +221,9 @@ def test_game_loses_first_try():
 
     with pytest.raises(GameLostException):
         guess_letter(game, 'x')  # Miss!
-        assert game['masked_word'] == '******'
-        assert game['remaining_misses'] == 0
-        assert game['previous_guesses'] == ['x']
+    assert game['masked_word'] == '******'
+    assert game['remaining_misses'] == 0
+    assert game['previous_guesses'] == ['x']
 
 
 def test_game_wins_several_moves_repeated_words():
@@ -236,9 +236,9 @@ def test_game_wins_several_moves_repeated_words():
 
     with pytest.raises(GameWonException):
         guess_letter(game, 'b')
-        assert game['masked_word'] == 'aba'
-        assert game['remaining_misses'] == 5
-        assert game['previous_guesses'] == ['a', 'b']
+    assert game['masked_word'] == 'aba'
+    assert game['remaining_misses'] == 5
+    assert game['previous_guesses'] == ['a', 'b']
 
 
 def test_game_wins_several_moves():
@@ -306,9 +306,9 @@ def test_game_loses_several_guesses():
 
     with pytest.raises(GameLostException):
         guess_letter(game, 'a')  # Miss!
-        assert game['masked_word'] == '******'
-        assert game['remaining_misses'] == 0
-        assert game['previous_guesses'] == ['x', 'z', 'a']
+    assert game['masked_word'] == '******'
+    assert game['remaining_misses'] == 0
+    assert game['previous_guesses'] == ['x', 'z', 'a']
 
 
 def test_game_loses_with_some_correct_guesses():
@@ -359,9 +359,9 @@ def test_game_already_lost_raises_game_finished():
 
     with pytest.raises(GameLostException):
         guess_letter(game, 'x')  # Miss!
-        assert game['masked_word'] == '******'
-        assert game['remaining_misses'] == 0
-        assert game['previous_guesses'] == ['x']
+    assert game['masked_word'] == '******'
+    assert game['remaining_misses'] == 0
+    assert game['previous_guesses'] == ['x']
 
     with pytest.raises(GameFinishedException):
         guess_letter(game, 'n')  # Doesn't matter
