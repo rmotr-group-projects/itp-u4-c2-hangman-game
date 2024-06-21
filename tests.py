@@ -93,11 +93,11 @@ def test_mask_word_with_valid_word():
     masked = _mask_word('Python')
     assert masked == '******'
 
-
 def test_mask_word_with_empty_string():
     with pytest.raises(InvalidWordException):
         masked = _mask_word('')
 
+        
 
 def test_start_new_game_initial_state():
     # This test verifies that you haven't changed start_new_game
