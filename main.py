@@ -25,7 +25,7 @@ def main():
     words = _input("Enter your list of words separated by comma. Leave empty for default: ")
     list_of_words = build_list_of_words(words, LIST_OF_WORDS)
 
-    attempts = _input("Enter how the number of attempts allowed. Leave empty for default: ")
+    attempts = _input("Enter the number of attempts allowed. Leave empty for default: ")
 
     if attempts.strip():
         game = start_new_game(list_of_words, int(attempts))
