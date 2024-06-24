@@ -5,10 +5,11 @@ except NameError:
     # Python 3
     _input = input
 
-from hangman.game import start_new_game, guess_letter
+from hangman.game import start_new_game, guess_letter, _get_random_word, _mask_word, _uncover_word
 from hangman.exceptions import *
 
-LIST_OF_WORDS = ['rmotr', 'Python', 'coding']
+# LIST_OF_WORDS = ['rmotr', 'Python', 'coding']
+LIST_OF_WORDS = ['Hangman', 'Imagination', 'Dragon', 'Throne', 'Sword', ' Space', 'Coding', 'Python', 'Anaconda']
 
 
 def build_list_of_words(words, default_list):
@@ -53,12 +54,13 @@ def main():
             if new_masked_word != previous_masked_word:
                 print("\tCongratulations! That's correct.")
             else:
-                print("\t:( That's a miss!")
+
     except GameWonException:
         print("\t YES! You win! The word was: {}".format(game['answer_word']))
     except GameLostException:
         print("\t :( OH NO! You Lose! The word was: {}".format(game['answer_word']))
 
-
+# raise GameFinishedException()        
+    
 if __name__ == '__main__':
     main()
