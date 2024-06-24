@@ -41,7 +41,6 @@ def test_uncover_word_with_all_equal_characters():
     word = _uncover_word('aaa', '***', 'a')
     assert word == 'aaa'
 
-
 def test_uncover_word_with_misses_and_guesses():
     word = _uncover_word('Python', '******', 'y')
     assert word == '*y****'
