@@ -5,7 +5,8 @@ from hangman.exceptions import *
 
 
 def test_uncover_word_with_empty_word():
-    """Words are empty"""
+    
+        
     with pytest.raises(InvalidWordException):
         _uncover_word('', '', 'x')
 
