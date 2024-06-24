@@ -192,7 +192,7 @@ def test_game_with_several_correct_and_incorrect_guesses():
     assert game['previous_guesses'] == ['y', 'x', 'o', 'z']
 
 
-def test_guess_word_is_case_insensitve():
+def test_guess_letter_is_case_insensitve():
     game = start_new_game(['Python'])
 
     guess_letter(game, 'p')

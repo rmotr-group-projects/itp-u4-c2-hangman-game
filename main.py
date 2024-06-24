@@ -8,7 +8,7 @@ except NameError:
 from hangman.game import start_new_game, guess_letter
 from hangman.exceptions import *
 
-LIST_OF_WORDS = ['rmotr', 'Python', 'coding']
+LIST_OF_WORDS = ['Cats', 'Swimming', 'Music', 'Reddit', 'Zelda']
 
 
 def build_list_of_words(words, default_list):
