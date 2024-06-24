@@ -38,8 +38,8 @@ def main():
         while True:
             print('')
             previous_masked_word = game['masked_word']
-            line_message = "({}) Enter new guess ({} remaining attempts): ".format(
-                previous_masked_word, game['remaining_misses'])
+            line_message = "({}) Enter new guess ({} remaining attempts) (Previous guesses: {})\n".format(
+                previous_masked_word, game['remaining_misses'], ','.join(game['previous_guesses']))
 
             users_guess = _input(line_message)
             try:
