@@ -4,45 +4,45 @@ from hangman.game import (
 from hangman.exceptions import *
 
 
-def test_uncover_word_with_empty_word():
+def test_uncover_word_with_empty_word(): #passed
     """Words are empty"""
     with pytest.raises(InvalidWordException):
         _uncover_word('', '', 'x')
 
 
-def test_uncover_word_with_invalid_character():
+def test_uncover_word_with_invalid_character(): #passed
     """Character to guess has len() > 1"""
     with pytest.raises(InvalidGuessedLetterException):
         _uncover_word('aaa', '***', 'xyz')
 
 
-def test_uncover_word_with_invalid_masked_word():
+def test_uncover_word_with_invalid_masked_word(): #passed
     """Length of words is different"""
     with pytest.raises(InvalidWordException):
         _uncover_word('aaa', '**********', 'x')
 
 
-def test_uncover_word_with_correct_character():
+def test_uncover_word_with_correct_character(): #passed
     word = _uncover_word('Python', '******', 'y')
     assert word == '*y****'
 
 
-def test_uncover_word_with_miss_character():
+def test_uncover_word_with_miss_character(): #passed
     word = _uncover_word('Python', '******', 'z')
     assert word == '******'
 
 
-def test_uncover_word_with_repeated_elements():
+def test_uncover_word_with_repeated_elements(): #passed
     word = _uncover_word('rmotr', '*****', 'r')
     assert word == 'r***r'
 
 
-def test_uncover_word_with_all_equal_characters():
+def test_uncover_word_with_all_equal_characters(): #passed
     word = _uncover_word('aaa', '***', 'a')
     assert word == 'aaa'
 
 
-def test_uncover_word_with_misses_and_guesses():
+def test_uncover_word_with_misses_and_guesses(): #passed
     word = _uncover_word('Python', '******', 'y')
     assert word == '*y****'
 
@@ -62,44 +62,44 @@ def test_uncover_word_with_misses_and_guesses():
     assert word == '*y**on'
 
 
-def test_uncover_word_is_case_insensitive_same_case():
+def test_uncover_word_is_case_insensitive_same_case(): #passed
     word = _uncover_word('Python', '******', 'P')
     assert word == 'p*****'
 
 
-def test_uncover_word_is_case_insensitive_different_case():
+def test_uncover_word_is_case_insensitive_different_case(): #passed
     word = _uncover_word('Python', '******', 'p')
     assert word == 'p*****'
 
 
-def test_get_random_word_with_one_word():
+def test_get_random_word_with_one_word(): #passed
     list_of_words = ['rmotr']
     word_to_guess = _get_random_word(list_of_words)
     assert word_to_guess == 'rmotr'
 
 
-def test_get_random_word_with_many_words():
+def test_get_random_word_with_many_words(): #passed
     list_of_words = ['rmotr', 'python', 'intro']
     word_to_guess = _get_random_word(list_of_words)
     assert word_to_guess in list_of_words
 
 
-def test_get_random_word_with_empty_list():
+def test_get_random_word_with_empty_list(): #passed
     with pytest.raises(InvalidListOfWordsException):
         word_to_guess = _get_random_word([])
 
 
-def test_mask_word_with_valid_word():
+def test_mask_word_with_valid_word(): #passed
     masked = _mask_word('Python')
     assert masked == '******'
 
 
-def test_mask_word_with_empty_string():
+def test_mask_word_with_empty_string(): #passed
     with pytest.raises(InvalidWordException):
         masked = _mask_word('')
 
 
-def test_start_new_game_initial_state():
+def test_start_new_game_initial_state(): #passed
     # This test verifies that you haven't changed start_new_game
     game = start_new_game(['Python'], number_of_guesses=3)
     assert game == {
@@ -110,7 +110,7 @@ def test_start_new_game_initial_state():
     }
 
 
-def test_game_with_one_correct_guess():
+def test_game_with_one_correct_guess(): #passed
     game = start_new_game(['Python'])
     guess_letter(game, 'y')
     assert game['masked_word'] == '*y****'
@@ -118,7 +118,7 @@ def test_game_with_one_correct_guess():
     assert game['previous_guesses'] == ['y']
 
 
-def test_game_with_two_correct_guesses_same_move():
+def test_game_with_two_correct_guesses_same_move(): #passed
     game = start_new_game(['rmotr'])
     guess_letter(game, 'r')
     assert game['masked_word'] == 'r***r'
@@ -126,7 +126,7 @@ def test_game_with_two_correct_guesses_same_move():
     assert game['previous_guesses'] == ['r']
 
 
-def test_game_with_one_incorrect_guess():
+def test_game_with_one_incorrect_guess(): #passed
     game = start_new_game(['Python'])
 
     guess_letter(game, 'x')  # Miss!
@@ -135,7 +135,7 @@ def test_game_with_one_incorrect_guess():
     assert game['previous_guesses'] == ['x']
 
 
-def test_game_with_several_incorrect_guesses():
+def test_game_with_several_incorrect_guesses(): #passed
     game = start_new_game(['Python'])
 
     guess_letter(game, 'x')  # Miss!
@@ -149,7 +149,7 @@ def test_game_with_several_incorrect_guesses():
     assert game['previous_guesses'] == ['x', 'z']
 
 
-def test_game_with_several_correct_guesses():
+def test_game_with_several_correct_guesses(): #passed
     game = start_new_game(['Python'])
 
     guess_letter(game, 'y')
@@ -168,7 +168,7 @@ def test_game_with_several_correct_guesses():
     assert game['previous_guesses'] == ['y', 'o', 't']
 
 
-def test_game_with_several_correct_and_incorrect_guesses():
+def test_game_with_several_correct_and_incorrect_guesses(): #passed
     game = start_new_game(['Python'])
 
     guess_letter(game, 'y')
@@ -192,7 +192,7 @@ def test_game_with_several_correct_and_incorrect_guesses():
     assert game['previous_guesses'] == ['y', 'x', 'o', 'z']
 
 
-def test_guess_word_is_case_insensitve():
+def test_guess_word_is_case_insensitve(): #passed
     game = start_new_game(['Python'])
 
     guess_letter(game, 'p')
@@ -206,7 +206,7 @@ def test_guess_word_is_case_insensitve():
     assert game['previous_guesses'] == ['p', 'n']
 
 
-def test_game_wins_first_try():
+def test_game_wins_first_try(): #passed
     game = start_new_game(['aaa'])
 
     with pytest.raises(GameWonException):
@@ -216,7 +216,7 @@ def test_game_wins_first_try():
         assert game['previous_guesses'] == ['a']
 
 
-def test_game_loses_first_try():
+def test_game_loses_first_try(): #passed
     game = start_new_game(['Python'], number_of_guesses=1)
 
     with pytest.raises(GameLostException):
@@ -226,7 +226,7 @@ def test_game_loses_first_try():
         assert game['previous_guesses'] == ['x']
 
 
-def test_game_wins_several_moves_repeated_words():
+def test_game_wins_several_moves_repeated_words(): #passed
     game = start_new_game(['aba'])
 
     guess_letter(game, 'a')
@@ -241,7 +241,7 @@ def test_game_wins_several_moves_repeated_words():
         assert game['previous_guesses'] == ['a', 'b']
 
 
-def test_game_wins_several_moves():
+def test_game_wins_several_moves(): #passed
     game = start_new_game(['abc'])
 
     guess_letter(game, 'a')
@@ -261,7 +261,7 @@ def test_game_wins_several_moves():
         assert game['previous_guesses'] == ['a', 'c', 'b']
 
 
-def test_game_wins_several_moves_some_misses():
+def test_game_wins_several_moves_some_misses(): #passed
     game = start_new_game(['abc'])
 
     guess_letter(game, 'a')
@@ -291,7 +291,7 @@ def test_game_wins_several_moves_some_misses():
         assert game['previous_guesses'] == ['a', 'x', 'c', 'z', 'b']
 
 
-def test_game_loses_several_guesses():
+def test_game_loses_several_guesses(): #passed
     game = start_new_game(['Python'], number_of_guesses=3)
 
     guess_letter(game, 'x')  # Miss!
@@ -311,7 +311,7 @@ def test_game_loses_several_guesses():
         assert game['previous_guesses'] == ['x', 'z', 'a']
 
 
-def test_game_loses_with_some_correct_guesses():
+def test_game_loses_with_some_correct_guesses(): #passed
     game = start_new_game(['Python'], number_of_guesses=3)
 
     guess_letter(game, 'y')
