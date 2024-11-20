@@ -1,0 +1,4 @@
+1) is my mask function correct? Now that I'm creating a new string that adds '*' for every character in the word to guess, I don't know 
+how to access each individual character in the original word to guess.
+
+2) what do I have to do with the "class" catefories in the exceptions module?
